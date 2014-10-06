@@ -1,0 +1,126 @@
+Instructions:
+As root user in you server create a new user in the box:
+
+ # useradd -m -s /bin/bash ircd
+ # passwd ircd
+ # Password: (Enter the password for ircd)
+ # Re-enter password: (Re-enter the password to verify)
+
+Change from root to the ircd user:
+ # su ircd
+ $ cd /home/ircd/
+ 
+As the ircd user enter the new user's directory, download unrealircd
+templates that wirelesspt and nixbits use and then from the official  
+unrealircd repository download the latest ircd source code from 3.2.x
+branch at https://www.unrealircd.org/download
+
+Download the templates:
+ $ git clone https://github.com/wirelesspt/ircd.git unreal/
+
+Download the sources:
+ $ wget --no-check-certificate https://www.unrealircd.org/downloads/Unreal3.2.10.4.tar.gz
+
+Extract the source files:
+ $ tar -zxvf Unreal3.2.10.4.tar.gz
+ $ cd Unreal3.2.10.4/
+
+Compile the sources:
+ $ ./Config; make; make install
+
+When asked "What directory are all the server configuration files in" change to:
+ /home/ircd/unreal/
+
+When asked "What is the path to the ircd binary including the name of the binary?" change to:
+ /home/ircd/unreal/src/ircd
+
+What should the default permissions for your configuration files be?
+ [0600]
+ 
+Do you want to support SSL (Secure Sockets Layer) connections?
+ [Yes]
+
+Do you want to enable IPv6 support?
+ [say yes if your server supports it]
+
+Do you want to enable ziplinks support? 
+ [Yes]
+
+Do you want to enable remote includes? 
+ [say yes if you know what you are doing]
+
+Do you want to enable prefixes for chanadmin and chanowner?
+ [Yes]
+
+What listen() backlog value do you wish to use?
+ [5]
+
+How far back do you want to keep the nickname history?
+ [2000]
+
+What is the maximum sendq length you wish to have?
+ [3000000]
+
+How many buffer pools would you like?
+ [18]
+
+How many file descriptors (or sockets) can the IRCd use?
+ [1024]
+
+During the compilation process; you will be asked to create ssl certificates
+Do not forget to create them according to your liking
+
+If you need to create ssl certificates later; you can use the scripts 
+generate-ssl.sh & generate-tls.sh inside settings/sslcerts/
+
+Once the ircd compilation ends you must compile the extra modules:
+
+Copy the modules to the ircd setup sources:
+ $ cp ~/unreal/modules_extra/* src/modules/
+
+Copy the executable module compile script to the root of unreal sources:
+ $ cp ~/unreal/compile_modules_extra.sh .
+
+Compile the modules:
+ $ ./compile_modules_extra.sh
+
+After the modules are complied; they need to be added to unreal binary location:
+ $ cp src/modules/*.so  ~/unreal/modules/
+
+Your ircd should be able to start without a problem now:
+ $ cd ~/ircd/unreal/
+ $ ./unreal start 
+
+Add a crontab that checks unrealircd and starts it at boot using provided script:
+ $ crontab setup_crontab
+
+(if you get any errors make sure you are in the crontab group)
+
+Finally ajust the templates to your preferences and restart unreal 
+
+ATTENTION ! You may want to change the following files:
+
+ settings/me/me.conf
+ settings/admin.admin.conf
+ settings/network/network.conf
+ settings/motd/ircd.motd + ircd.motd.pt + ircd.motd.ssl
+
+You will need to change this files if you want to link to another hub or leaf:
+
+ settings/links/wirelesspt.conf
+ settings/links/nixbits.conf
+
+WARNING ! Due to security reasons YOU MUST CHANGE this files:
+
+ settings/vhost/vhost.conf         <-- with password of your preference
+ settings/network/cloak-keys.conf  <-- create 3 different long random 'passwords'    
+ settings/drpass/drpass.conf       <-- create very secret passwords here
+
+For wiki support you can visit https://wirelesspt.net/wiki/ircd and our forums
+
+If you find any errors with this tutorial, please report it to the git maintainer
+
+No support will be given for pre modified unrealircd, templates or modules.
+
+EOF;
+

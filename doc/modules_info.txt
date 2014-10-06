@@ -1,0 +1,348 @@
+######################################################################
+
+RMTKL
+
+Command /rmtkl, m_rmtkl.c -- Documentation
+
+Command /rmtkl: removes all TKLs (bans) matching the given
+conditions and having any types you specify (available ones are
+K:Line, G:Line, Z:Line, Global Z:Line and Shun). The removal is
+done locally or globally, depending on the ban is global or not.
+With this command you can easily get rid of a group of no longer
+necessary bans.
+
+        /RMTKL <types> <user@host mask> [<comment mask>]
+
+        The <types> parameter specifies what type(s) of bans you
+        want to remove. It may contain any number of the following
+        characters: K, z, G, Z, q, Q and *. (The asterix includes
+        every types but q and Q (nick bans).
+
+        <user@host mask> is a wildcard mask to match one or more
+        of the user@host's that bans were added for.
+
+        <comment mask> is optional. If specified, a ban must be
+        matched by this mask, otherwise it won't be removed.
+        May contain wildcards.
+
+Examples
+-------------
+
+        To remove all TKLs (be careful with this):
+                /RMTKL * *
+
+        To remove all Mexican G/Z:Lines:
+                /RMTKL GZ *@*.mx
+
+        To remove all non-nick bans having "Zombie" in their
+        reasons:
+                /RMTKL * * *Zombie*
+
+######################################################################
+
+JoinPartSno
+
+The JoinPartSno module allows you to receive notification of whenever a local user joins
+or parts a channel. The module creates a new snomask, +J, that allows opers to receive 
+the notification. The +J snomask is only able to be used by IRC operators.
+
+######################################################################
+
+JUMPSERVER
+
+The usage of the command is:
+ /JUMPSERVER <server>[:port] <NEW|ALL> <reason>
+If 'NEW' is chosen then only new (incoming) clients will be redirected/rejected.
+If 'ALL' is chosen then ALL clients (except opers) are redirected immediately (+incomming).
+and if you also want to specify an SSL server:
+ /JUMPSERVER <server>[:port]/<sslserver>[:sslport]> <NEW|ALL> <reason>
+If 'NEW' is chosen then only new (incoming) clients will be redirected/rejected.
+If 'ALL' is chosen then ALL clients (except opers) are redirected immediately (+incomming).
+
+ /JUMPSERVER
+Will show the current status.
+
+ /JUMPSERVER OFF
+Will stop any redirects.
+
+######################################################################
+
+STAFF
+
+Command /staff, m_staff.c -- Documentation
+
+This module provides command /STAFF, which is designed to list
+all the staff members of your network, as well as any additional
+information you'd like people to see. Whenever someone types
+/staff, the contents of the network.staff file (or another file/URL
+specified in the configuration) is shown to the person.
+You can reload the file by typing /REHASH or /REHASH -staff.
+The command also works remotely: /staff <servermask>.
+
+Set set::staff-file to the file (or URL) you want to display
+when the /STAFF command is entered. For example:
+
+set
+{
+        /*
+         * Specifies the path where your network staff file is
+         * located. This is usually a relative path starting from
+         * your main Unreal3.2 directory, or it may also be
+         * an absolute path. If remote includes are enabled, you can
+         * also specify an URL here to download the file remotely
+         * before loading. The default value is "network.staff".
+         * Examples:
+         *
+         *     staff-file "network.staff";
+         *     staff-file "/home/dir/Unreal3.2/network.staff";
+         *     staff-file "http://www.yourserver.com/network.staff";
+         */
+
+        staff-file "network.staff";
+};
+
+######################################################################
+
+IRCOPS
+
+Command /ircops, m_ircops.c -- Documentation
+
+Command /ircops: displays you a list of all IRC Operators available
+on IRC (except who are hiding (+H) if you aren't an IRC operator).
+
+Syntax is simply /IRCOPS, no additional parameters are supported. 
+
+######################################################################
+
+HIDE SERVER
+
+Hide servers from /map & /links, hideserver.c -- Documentation
+
+This module allows you to hide certain servers from the output of
+/map and /links, or you can restricts the use of /map and /links
+with it to IRCops only. A configurable reason can be optionally
+shown too.
+
+
+These directives below should be placed into your configuration
+file. Modify them as you wish.
+
+hideserver
+{
+        /*
+         * Enable this (specify "yes" as a value) if you'ld like
+         * to restrict the usage of /map to IRCOps only.
+         */
+
+        disable-map no;
+
+        /*
+         * The same as above, but now the setting applies to /links
+         */
+
+        disable-links no;
+
+        /*
+         * They are the messages that will be displayed when a user
+         * (non-ircop) tries to do a /map or /links, and the
+         * corresponding command is disabled. The existence of three
+         * stars in the beginning of the message is recommended.
+         * If the directives below are not present (for instance,
+         * they are commented out), users will receive only an
+         * "End of /<command>" message.
+         */
+
+        map-deny-message "*** Command /map is disabled for security reasons";
+        links-deny-message "*** Command /links is disabled for security reasons";
+
+        /*
+         * You can also hide only specific servers. This block has
+         * a meaning only if at least one of the /map and /links
+         * commands is enabled. Works like the uline block, simply
+         * put as many server names in this block as you want.
+         * If you include the name of the local server in this list,
+         * it will be ignored.
+         */
+
+        hide
+        {
+                hub4.test.com;
+                leaf3.test.com;
+        };
+};
+
+######################################################################
+
+GETINFO
+
+command /getinfo                              
+
+
+This module provides the /getinfo command to retrieve a bunch of
+information about either a server, client or channel. (Reply
+messages are sent with numeric 339.)
+
+Note 1: you can get more information about users & servers if you
+        send the GETINFO request to the server which the user or
+        server is on.
+
+Note 2: remote GETINFO requests (fe. /getinfo <nick> <nick>
+        are possible only if the module is loaded on every
+        servers of your network.
+
+
+The usage of the /getinfo command is similar to /whois.
+Available syntaxes:
+
+        /GETINFO <what>
+                Retreive information from the local server
+                (where <what> is <nick|servername|channel>).
+        /GETINFO <from> <what>
+                Retreive information about <what> from
+                the specified server (<from> may also be
+                a nickname, like in /whois).
+
+Examples:
+
+        /GETINFO #test
+                Get information about channel #test.
+        /GETINFO server3.test.com
+                Shows information about server3.test.com
+        /GETINFO server2.test.com SomeOne
+                Returns information about SomeOne from
+                server2.test.com
+        /GETINFO SomeOne SomeOne
+                Sends a GETINFO request about SomeOne to the
+                server (s)he is on.
+
+
+######################################################################
+
+ANTIMOON
+
+This module detects and removes 'MyMoon' trojans.
+This virus/trojan spams like:
+'Shakira Dancing virual girl , visit my private server while im online
+http://1.2.3.4:1234/'
+(note that there are like 40-50 different text messages, and also the
+ ip and port seem random)
+It seems to connect, spam in specific channels, and then disconnect 
+after 10-20s.
+
+This module detects such trojans BEFORE they are even fully connected
+by using a nameslist and some other charistics.
+
+As of Tue Sep 21 00:59:41 CEST 2004 [GMT+2]:
+- F-Secure detects it as 'Worm.Win32.VB.g'
+- Clamav detect it as 'Worm.Dica.A'
+- TrendMicro does not seem to detect it
+- Didn't have time yet to look at others
+
+######################################################################
+
+F_ULINESSL 
+
+ULine ChanMode +z (SSL) fix module by fez / Eric, (c) 2010
+
+** Configuration **
+This module supports the config directive set::uline-secure-action, with
+possible settings listed below:
+
+"nothing" # When U:line sets channel mode +z, ignore it.
+"part" # When U:line sets channel mode +z, and all the users on the channel
+       # are insecure, then PART (/SAPART) them. This is the DEFAULT setting.
+"kick" # When U:line sets channel mode +z, and all the users on the channel
+       # are insecure, then KICK (/KICK) them. WARNING: this setting can
+       # cause nasty kick-rejoin floods if the client has auto-rejoin on kick.
+NOTE: If a U:line sets channel mode +z, and there are ANY secure users on the
+      channel, then all insecure users will be KICKed regardless of this 
+      setting, since the presence of secure users will cause the channel to
+      remain extant after clearing out the insecure users.
+Example:
+
+set {
+  uline-secure-action "part";
+};
+
+######################################################################
+
+BOPM
+
+This module makes it possible to have a single BOPM scan all clients at all servers.
+It's simple: this module should be loaded at ALL[*] servers. Then, if someone connects
+it will forward the connection notice to the nick specified in set::bopm-nick.
+Note that the module will check if the person specified by bopm-nick is an oper,
+if not it will not send a notice (just to be sure simple users can't fake BOPM
+if the remote server is down).
+[*]: All, INCLUDING the one the BOPM client is connected to.
+
+Add the following line to your unrealircd.conf (or whatever):
+
+loadmodule "src/modules/m_bopmhelper.so";
+
+somewhere after your other loadmodule lines for example.
+And set a bopm-nick in your set block, like:
+
+set {
+[..]
+        bopm-nick "BOPM";
+
+######################################################################
+
+CHGSWHOIS
+
+This module provides two commands: /chgswhois and /setswhois to
+change (or delete) someone's or your SWHOIS information.
+Notifications about /chgswhois usages are sent to snomask +e and
+they are also logged with the chg-commands log flag. Note: the
+module have to be installed on all servers of the network in
+order to let it work properly.
+
+Commands /chgswhois & /setswhois
+
+######################################################################
+
+CLONES
+
+Clones detector
+
+Command /clones: lists all clones (users having the same IP
+address) matching the given options. (See syntax in section 7.)
+
+Note: install this module on all servers, otherwise it won't work
+remotely!
+
+You can optionally add the following block to your help.conf:
+
+help Clones {
+        " Gives you a list of clones based on the specified options.";
+        " Clones are listed by a nickname or by a minimal number of";
+        " concurrent sessions connecting from the local or the given";
+        " server.";
+        " -";
+        " Syntax: CLONES <min-num-of-sessions>|<nickname> [<servermask>]";
+        " -";
+        " Examples: CLONES 3";
+        "           CLONES Abuser hub.test.com";
+};
+
+Usage:
+
+    /clones <min>|<nickname> [<servermask>]
+        - if <min> is given, specifies the minimum number of
+          concurrent sessions from the same address to be listed,
+        - or, if a <nickname> is specified, only clones matching
+          the same IP as the given nickname will be listed,
+        - <servermask> is optional, if not given, the local server
+          is assumed.
+
+Examples:
+    /clones 2
+        lists all local clones having two or more sessions
+    /clones Loser
+        lists all local clones of Loser
+    /clones 3 hub.test.com
+        lists all clones with at least 3 sessions, which are
+        connecting from hub.test.com
+
+######################################################################

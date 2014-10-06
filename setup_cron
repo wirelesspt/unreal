@@ -1,0 +1,5 @@
+# Start ircd at every system boot
+@reboot irc cd /home/ircd/unreal && ./unreal start &
+
+# Check if ircd is running, every 10 minutes
+0,10,20,30,40,50 * * * * /home/ircd/unreal/ircdcron/ircdchk >/dev/null 2>&1

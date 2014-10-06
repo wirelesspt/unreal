@@ -1,0 +1,38 @@
+
+
+In order to begin receiving support in #Unreal-Support you must take a small quiz that tests your eligability for support. Our reasons for requiring a quiz is outlined in Stealth's FAQ under Why is there a quiz to get 
+support?. Do NOT change your nick to something dumb like “Need_Voice” or “Give_me_voice”, such will get you banned.
+
+If you cannot access the quiz for any reason, please visit the forums for support instead. It would also be appreciated if you left a message in #Unreal3-Devel or #Unreal4-Devel stating the quiz is down. It will be 
+investigated when someone sees the message.
+
+Once you have voice in #Unreal-Support, please follow these simple rules to make your support experience a pleasant one:
+
+    The channel language is English. If you cannot speak English, please visit the forums and post in the International section.
+    Always make sure you invested some time yourself in solving your problem. This means checking the following:
+        UnrealIRCd Documentation
+        UnrealIRCd FAQ
+        UnrealIRCd Forums
+        Stealth's FAQ
+    What we support is UnrealIRCd, nothing else. We do not help with services or any other non-UnrealIRCd products. We will not help with your operating system, services, stats, BOPM, firewall, or router! If you need 
+help with your OS, you should not be trying to run an IRCd. This includes OperServ RAW and SVS* commands: If a command starts with SVS and you do not know what it does or how to use it, that command is not for you - so 
+don't use it!
+    Tampering with the IRCd source (changing version string, colored nicks, anything..) makes the software not our responsibility, hence we reserve the right to deny you support.
+    Don't go join other #unreal* channels such as #Unreal3-Devel, #Unreal4-Devel or #Chat in order to get help. It's not going to get you anything but a kick/ban.
+    DO NOT JUST ASK IF YOU CAN GET HELP, instead, Say: “I need help, <the question here>“. We will take this as a sign that you read these rules.
+    Please understand that the people who (might) help you in #unreal-support are volunteers. There is no obligation to help you, and we may not be available all the time. DO NOT HIGHLIGHT ALL THE OPS, it is sure to get 
+you banned. Getting help is a privilege, NOT a right. Do not demand support!
+    Do NOT message people without asking for permission first.
+    We only support the latest UnrealIRCd version.
+    Use common sense… don't flood, don't spam, no excessive ?? or !!. Show respect towards those helping you.
+    We do not support or help with spying on users (m_spy, +I, m_monitor, etc). Discussing such things WILL get you banned!
+    No pasting! If you need to paste something (more than 1 line), then use the paste bin.
+    Do not paste your whole conf and expect us to find and fix the errors for you. Unreal tells you exactly where in the conf the errors are. We are here to help you fix the errors, not to fix the errors for you.
+    #Unreal-Support is not for non-Unreal chat. Please go to a different channel for that (such as #Chat).
+    Feel free to stick around to help other people! #Unreal-Support is not for telling people to 'RTFM' or to 'Google it'. We are here to help, and not to give people a hard time.
+
+To take the quiz for support, please go here and follow the directions.
+
+If you would like to be a supporter for UnrealIRCd, we promote people who are active on the channel and show a good ability to help with UnrealIRCd, network problems, and minor OS problems involved with running 
+UnrealIRCd. We never actively seek supporters, so please don't ask.
+

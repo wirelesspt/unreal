@@ -1,0 +1,163 @@
+
+How-to: Linking servers
+
+1: Introduction
+
+The question "How do I link servers", or "Help! I've got a problem with linking servers!!!!" gets asked around the forums quite frequently. Actually, a LOT. And it's also one of the most difficult things to 
+get right. Hence this guide, which I'm hoping will answer most of your questions.
+
+2: Getting the basics sorted out
+
+OK, for demonstration purposes, I'm going to call our two servers server1.yourdomain.tld and server2.yourdomain.tld. (This information would be in your Me Block.)
+
+For starters, check the Me Block and make sure that the server numerics are DIFFERENT. You can't link two servers with the same numeric.
+
+Now, I'm assuming that you have a server class set up. If not, do it now. Yes, now. After you're done that, go to your servers' listen blocks and see which ports you can use for the linking (more than likely 
+your dedicated server ports). For demonstration purposes, server1 will have a dedicated server port at 8067, and server2 at 8097.
+
+You'll also need the IP addresses of the two servers. Let's say that server1 has IP 1.2.3.4 and server2 has IP 5.6.7.8. Of course, you can use their real hostnames instead - but note that if you do this, you 
+cannot accept an incoming link (unless you set link::options::nohostcheck) because the hostname is used for connecting and validating incoming connections (the manual has more detail on this point).
+
+OK, now to put in the link blocks.
+
+server1.yourdomain.tld will have the following link block:
+
+Code: 
+    link server2.yourdomain.tld {
+       username *;
+       hostname 5.6.7.8;
+       bind-ip *;
+       port 8097;
+       hub *;
+       password-connect "LiNk";
+       password-receive "LiNk";
+       class servers;
+    };
+
+
+
+And server2.yourdomain.tld will have this:
+
+Code: Select all
+    link server1.yourdomain.tld {
+       username *;
+       hostname 1.2.3.4;
+       bind-ip *;
+       port 8067;
+       hub *;
+       password-connect "LiNk";
+       password-receive "LiNk";
+       class servers;
+    };
+
+
+
+The important thing to remember is that server1 will contain information for linking to server2, and vice versa. Never forget this! On that note, it should be apparent that the name of the link block must 
+match the remote server's name in it's Me Block (see this thread for an example)
+
+OK, now rehash your servers (if you changed the Me Block while you were sorting out your numerics, you'll have to restart), and then you should be able to connect them up using the /CONNECT command.
+
+If it doesn't link, check everything again. If it still doesn't work, then post in these forums for help. If your link does work, well then it's time for some fine-tuning.
+
+3: Fine-tuning your link
+
+Encrypted connections: You might want to encrypt the connections between the two servers to prevent "sniffing". In fact, you SHOULD do this. Now, obviously your IRCd's need to be compiled with SSL support 
+for this to work. Then, you need to make your dedicated server ports SSL-only. Once you've done that, go to your link blocks and add the following code to them:
+
+Code: 
+
+       options {
+          ssl;
+       };
+
+
+
+That should do it.
+
+The above code would be referred to by the UnrealIRCd team (as well as the Fine Manual) as link::options:ssl.
+
+Compressed connections: I can't think of a good reason why you wouldn't want to compress the data streaming between the two servers. It will save you plenty of bandwidth, believe me. Firstly, you'll need to 
+have both servers compiled with zip support (if you're using the Win32 build, it's enabled). Now, go and add the link::options::zip option to the options section that we put in earlier, so that you get 
+something like this:
+
+Code: 
+
+       options {
+          ssl;
+          zip;
+       };
+
+
+
+One important note: you'll need the zip option set at BOTH ends.
+
+If you're particularly picky, you can use link::compression-level to set the level of compression.
+
+Hub vs leaf? A hub has multiple servers linked to it, while a leaf can only link to one server. Now, let's say that you want server2 to be a leaf. Go to server1's configuration file and change link::hub to 
+link::leaf so that you get something like this:
+
+Code: 
+
+    link server2.yourdomain.tld{
+       ...
+       leaf *;
+       ...
+    };
+
+
+
+Now, the manual states the value attached to link::leaf is "a mask that this server will act like a leaf towards". So if you need to change it, then change it, otherwise leave it alone.
+
+(You may also want to play around with link::leafdepth, but I don't know much about it and so would welcome some information in this regard.)
+
+One last, very important thing. A server is EITHER a hub OR a leaf. You CANNOT combine these two options.
+
+Changing hosts: Use link::options::nodnscache (doesn't cache the IP for outgoing server connections) and/or link::options::nohostcheck (doesn't validate the link::hostname). That should sort that little 
+issue out.
+
+Auto-connect: Use link::options::autoconnect. The time between connection attempts is specified in class::connfreq for the class you're using. You need only enable this from one side
+
+4: Special information for linking services
+
+Firstly, you CANNOT use ssl or zip in your options unless your services supports these. And they probably don't.
+
+Secondly, you should ALWAYS set your services server to be a hub and not a leaf. The reason for this is because the OperServ JUPE command introduces fake servers onto your network, and obviously this won't 
+work correctly if your services server has been specified as a leaf.
+
+Thirdly, services will connect to you. Don't try and connect to it. Which means: don't try use /CONNECT on it, and take out link::options::autoconnect for your services server if it's there.
+
+Finally, EVERY server on your network will need a U-Line for your services server for it to be able to change the modes correctly. The best way to do this is by using remote includes if every server on your 
+network has them enabled.
+
+5: Frequently Asked Questions
+
+    How do I set it up so that if the connection with one server fails, my server connects to another server?
+    This is what deny link blocks are for. Taken from a codemastr post: "You setup a condition for hub2 so that it is only linked to if hub1 is not around." You might also want to see this thread.
+    Can I link my server to two hubs?
+    This really depends on what the resulting network topology will look like. If you end up with something like this:
+
+    Code:
+        HUB1 ------- YOU ------- HUB2
+
+
+
+    This should be fine. If however, you end up with something like this:
+
+    Code: 
+
+        HUB 1 ------- HUB 2
+            \         /
+             \       /
+              \     /
+               \   /
+                YOU
+
+This won't work. Circular topologies aren't allowed when linking IRC Servers (it's explicitly mentioned in RFC1459).
+
+
+6: Conclusion
+
+Well, I hope that this guide answers most of your questions and solves most of your problems. If this doesn't help, post in the support forums and we'll be quite happy to help you.
+
+If you notice any errors in this guide, please point them out to me and  i will correct them.
+
