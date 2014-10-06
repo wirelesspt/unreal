@@ -16,7 +16,7 @@ unrealircd repository download the latest ircd source code from 3.2.x
 branch at https://www.unrealircd.org/download
 
 Download the templates:
- $ git clone https://github.com/wirelesspt/ircd.git unreal/
+ $ git clone https://github.com/wirelesspt/unreal.git
 
 Download the sources:
  $ wget --no-check-certificate https://www.unrealircd.org/downloads/Unreal3.2.10.4.tar.gz
