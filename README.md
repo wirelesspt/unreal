@@ -9,7 +9,9 @@ national and international irc chat global network.
 These templates are organized to be able to be used as or with ircd
 remote include functionality. Please note that this is an advanced 
 instalation and usage template method and your ircd must be compiled
-with zlib & openssl and additionally curl for remote includes is advised.
+with zlib & openssl.
+Additionally curl for remote includes is advised unless you use sshfs
+to mount the remote include network drive that contains remote configs
 
 For instalation details with these templates and custom modules
 check doc/install.txt which MUST BE followed.

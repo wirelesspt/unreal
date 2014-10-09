@@ -1,0 +1,1485 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>FAQ :: UnrealIRCd Support :: The X-Tab Project</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-18644081-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <h1>FAQ</h1>
+      <div id="main">
+        <h2>Errors:</h2>
+        <blockquote> <a href="#stream">Error binding stream socket to
+            IP 0.0.0.0 port 6667</a><br>
+          <a href="#notfound">./unreal : line 10: something: command not
+            found</a><br>
+          <a href="#missing_conf">Couldn't open "unrealircd.conf":
+            Nosuch file or directory</a><br>
+          <a href="#nosslcert">Failed to load SSL certificate
+            server.cert.pem</a><br>
+          <a href="#sslerror">I get SSL errors that say "Internal
+            OpenSSL error or protocol error"</a><br>
+          <a href="#msvserr">[Windows] Error: "This application has
+            failed to start..."</a><br>
+          <a href="#cloakdll">[Windows] Error: cloak.dll access denied
+            OR not found</a> </blockquote>
+        <h2>K:Lines, G:Lines, and Spamfilters:</h2>
+        <blockquote> <a href="#stored">Where are G/K/Z:Lines and
+            spamfilters stored?</a><br>
+          <a href="#gline">How can I remove all the G:Lines?</a><br>
+          <a href="#spamfilter">How can I remove all the Spamfilters?</a><br>
+          <a href="#savelines">How do I save all my G/K/Z:Lines during a
+            restart?</a> </blockquote>
+        <h2>Windows Issues:</h2>
+        <blockquote> <a href="#service">Why isn't there a window or
+            system tray icon? (How to uninstall the Unreal service)</a><br>
+          <a href="#service2">I don't want this window or system tray
+            icon! (How to install the Unreal service)</a><br>
+          <a href="#msvserr">Error: "This application has failed to
+            start..."</a><br>
+          <a href="#nostart">Unreal won't start!</a><br>
+          <a href="#compwin">How do I compile Unreal on Windows?</a><br>
+          <a href="#cloakdll">Error: cloak.dll access denied OR not
+            found</a> </blockquote>
+        <h2>Network and Internet Issues:</h2>
+        <blockquote> <a href="#pingfreq">Why do my users constantly get
+            "Ping timeouts"?</a><br>
+          <a href="#connect">Why can't outside people connect?</a><br>
+        </blockquote>
+        <h2>Configuration:</h2>
+        <blockquote> <a href="#encrypt">How do I add encrypted
+            passwords to oper blocks?</a><br>
+          <a href="#excessflood">I have clients exit with "Excess Flood"</a><br>
+          <a href="#nofakelag">Why are messages being slowed down? How
+            do I stop it?</a><br>
+          <a href="#meshlink">Is it possible to do mesh linking?</a><br>
+          <a href="#channels">How do I make it so users can't create
+            their own channels?</a><br>
+          <a href="#stopserver">How do I stop a delinked server from
+            trying to connect?</a> </blockquote>
+        <h2>Modules:</h2>
+        <blockquote> <a href="#installmod">How do I install modules?</a><br>
+          <a href="#reqmod">Where do I request custom modules?</a><br>
+          <a href="#learnmod">Where do I learn how to code modules?</a><br>
+          <a href="#modtable">Is there a list of what modes and commands
+            modules give?</a> </blockquote>
+        <h2>IRC Support:</h2>
+        <blockquote> <a href="#mibbit">Why is the use of Mibbit not
+            allowed in the Unreal support channel?</a><br>
+          <a href="#quiz">Why is there a quiz to get support?</a><br>
+          <a href="#uhelper">Is the quiz open source?</a><br>
+          <a href="#voice">Will I ever need to retake the quiz?</a><br>
+          <a href="#avoice">Can I be added to the VOP list?</a> </blockquote>
+        <h2>Everything Else:</h2>
+        <blockquote> <a href="#lusers">How can I reset the user counts
+            after a botnet attack?</a><br>
+          <a href="#getrealip">How do I get the real host/ip of an user?</a><br>
+          <a href="#getnicks">How do I see who connected from a specific
+            IP?</a><br>
+          <a href="#opers">How do I keep opers from attacking higher
+            opers?</a><br>
+          <a href="#hideidle">How do I hide my idle time?</a><br>
+          <a href="#versioninfo">What do all the characters mean in
+            /version?</a><br>
+          <a href="#SA_Error">I get permission denied when trying to use
+            SAJOIN/SAPART/SAMODE</a><br>
+          <a href="#InstallBOPM">How do I set up a BOPM?</a><br>
+          <a href="#noreply">Nothing happens when I use my aliases</a><br>
+          <a href="#005">How do I hide/remove the server information on
+            connect?</a><br>
+          <a href="#upgrading">How do I upgrade UnrealIRCd?</a> </blockquote>
+        <hr><br>
+        <center>
+          <h1>Errors</h1>
+        </center>
+        <a name="stream"></a>&nbsp;<br>
+        <p><b><u>Error binding stream socket to IP 0.0.0.0 port 6667</u></b></p>
+        <blockquote> The IP 0.0.0.0 = all interfaces. This error is
+          because you are on a shell, or your curent user does not have
+          permissions to bind to all interfaces.<br>
+          <br>
+          To fix this, specify the IP that the shell provided you with
+          to use in your listen block. If you do not know this IP,
+          contact the administrator. If this is your own server, and you
+          dont have the permissions as this user, simply use the IP of
+          the device you want connections to come in on.<br>
+          <br>
+          Example:<br>
+          <tt>listen 1.2.3.4:6667;</tt><br>
+          1.2.3.4 will be the IP of the interface you wish to use.<br>
+          <br>
+          If you still get this error, try running "<tt>netstat -anlp |
+            grep 6667</tt>" (of course replace 6667 with whatever port
+          is giving you problems) to see if anything is listening on
+          that port, and to see what process is using it (it will not
+          show which process if you are not the process owner) </blockquote>
+        <a name="notfound"></a>&nbsp;<br>
+        <p><b><u>./unreal : line 10: something: command not found</u></b></p>
+        <blockquote> This is because in ./Config you did not specify the
+          path <b>for</b> the binary file, but instead put the path <b>to</b>
+          the binary file. You need to run ./Config again, and read the
+          questions carefully. You need to specify a path for the binary
+          <b>that includes the name of the binary.</b> </blockquote>
+        <a name="missing_conf"></a>&nbsp;<br>
+        <p><b><u>Couldn't open "unrealircd.conf": No such file or
+              directory</u></b></p>
+        <blockquote> There are a few possible causes for this error.
+          <ul>
+            <li>You did not create a configuration file. Read the docs.</li>
+            <li>The file is not named correctly.</li>
+          </ul>
+          To fix it:<br>
+          <br>
+          Windows:
+          <ol>
+            <li>Open the file in Notepad or another preferred program.</li>
+            <li>In the File menu, select Save As</li>
+            <li>In the field labeled "Save as type:" select "All Files
+              (*.*)"</li>
+            <li>Save the file as unrealircd.conf in the same folder as
+              wircd.exe</li>
+          </ol>
+          *NIX:
+          <ol>
+            <li>Go to the Unreal3.2 directory (or whatever directory
+              UnrealIRCd is in) and make sure unrealircd.conf is in that
+              directory.</li>
+            <li>Make sure unrealircd.conf is spelled correctly AND is
+              ALL lower-case, such as "unrealircd.conf". File names in
+              *NIX are CaSe-SensiTIVe.</li>
+          </ol>
+        </blockquote>
+        <a name="nosslcert"></a>&nbsp;<br>
+        <p><b><u>Failed to load SSL certificate server.cert.pem</u></b></p>
+        <blockquote> *NIX:<br>
+          ./Config should have created keys, but "make install" does not
+          copy the keys to your install directory for you. This is so if
+          you are using your own keys (like from cacert.org) they do not
+          get overwritten by the self-signed keys ./Config generates. If
+          you cannot find these keys or need to generate new ones, run
+          "make pem"<br>
+          <br>
+          Windows:<br>
+          It is possible the installation did not generate keys, or you
+          may have cancelled the creation process. Simply run
+          "makecert.bat" in the Unreal folder. </blockquote>
+        <a name="sslerror"></a>&nbsp;<br>
+        <p><b><u>I get SSL errors that say "Internal OpenSSL error or
+              protocol error"</u></b></p>
+        <blockquote> You are getting errors that look like this because
+          you have snomask +j (junk) set. The junk snomask is used for
+          determining the cause of some SSL problems, and should
+          otherwise be ignored. Common causes for these errors are:
+          clients improperly closing the connection (user quits with
+          "Input/Output Error"); as well as people connecting to a SSL
+          port without SSL.<br>
+          <br>
+          If you do not wish to see these errors, type <tt>/mode
+            yournick +s -j</tt> </blockquote>
+        <br>
+        <hr>
+        <center>
+          <h1>K:Lines, G:Lines, and Spamfilters</h1>
+        </center>
+        <a name="stored"></a>&nbsp;<br>
+        <p><b><u>Where are G/K/Z:Lines and spamfilters stored?</u></b></p>
+        <blockquote> G/K/Z:Lines are stored in memory, and not in any
+          file. The only bans stored in a file are the ones you specify
+          yourself in Unreal's configuration. This means that when
+          Unreal is restarted, all bans and spamfilters added using
+          /spamfilter are lost. To preserve such data, is to link Unreal
+          to a network, where the other servers will store global bans
+          and spamfilters and send them back when the server is
+          restarted. Another way would be to get the tlk_export and
+          tkl_import modules, and have that information saved manually
+          when the server is restarted (note: these modules would not be
+          able to store spamfilters). </blockquote>
+        <a name="gline"></a>&nbsp;<br>
+        <p><b><u>How can I remove all the G:Lines?</u></b></p>
+        <blockquote> There is no IRCd command to remove all the G:Lines.
+          I have come up with ways to do it simply with both mIRC and
+          XChat.<br>
+          <br>
+          For mIRC, press ALT+R to open up the Remote Scripts Editor,
+          and enter the following line:
+          <pre>raw 223:*:{ gline - $+ $3 }</pre>
+          For XChat, you may use the following TCL script:
+          <pre>on 223 rmgline {
+  set gline [split $_rest " "]
+  /gline -[lindex $gline 1]
+}</pre>
+          Once you have entered the script, simply type /gline, and the
+          script will remove the glines as it receives the list from the
+          server. Additionally, you may use "/stats g +m &lt;mask&gt;"
+          to only remove glines matching a certain mask. You may get
+          disconnected while doing this, just reconnect and do it again.<br>
+          <br>
+          When done, BE SURE TO REMOVE OR COMMENT THE SCRIPT! Otherwise,
+          it will cause issues in the future. </blockquote>
+        <a name="spamfilter"></a>&nbsp;<br>
+        <p><b><u>How can I remove all the Spamfilters?</u></b></p>
+        <blockquote> There is no IRCd command to remove all the
+          Spamfilters. I have come up with ways to do it simply with
+          both mIRC and XChat.<br>
+          <br>
+          For mIRC, press ALT+R to open up the Remote Scripts Editor,
+          and enter the following line:
+          <pre>raw 229:*:{ if ($2 === F) { spamfilter del $3 $4 - - $10- } }</pre>
+          For XChat, you may use the following TCL script (I think this
+          is correct. If it is not, please let me know):
+          <pre>on 229 rmspamfilter {
+  set spamfilter [split $_rest " "]
+  /spamfilter del [lrange $spamfilter 1 2] - - [lrange $spamfilter 8 end]
+}</pre>
+          Once you have entered the script, simply type /spamfilter
+          (with no parameters), and the script will remove the
+          spamfilters as it receives the list from the server. You may
+          get disconnected while doing this, just reconnect and do it
+          again.<br>
+          <br>
+          When done, BE SURE TO REMOVE OR COMMENT THE SCRIPT! Otherwise,
+          it will cause issues in the future. </blockquote>
+        <a name="savelines"></a>&nbsp;<br>
+        <p><b><u>How do I save all my G/K/Z:Lines during a restart?</u></b></p>
+        <blockquote> There are 2 ways of doing this. You can either get
+          the modules m_tkl_export and m_tkl_import to export and import
+          your G/K/Z:Lines to file and restore them, or you can
+          configure another Unreal to link just for the purpose of
+          saving them. Keep in mind your services will not save your
+          G/K/Z:Lines unless they were set through the services to begin
+          with. </blockquote>
+        <br>
+        <hr>
+        <center>
+          <h1>Windows Issues</h1>
+        </center>
+        <a name="service"></a>&nbsp;<br>
+        <p><b><u>Why isn't there a window or system tray icon?</u></b></p>
+        <blockquote> This is because you have installed it as a service.
+          When Unreal is installed as a service, there is no window or
+          icon in the system tray. Installing Unreal as a service has
+          benefits such as restarting when it crashes. <br>
+          <br>
+          If you do not like it installed as a service, follow these
+          steps:
+          <ol>
+            <li>Open a command prompt. (For the mentally challenged, you
+              can get to the command prompt by: Start &gt; Run &gt; cmd)</li>
+            <li>Get to the directory you have installed it in.</li>
+            <li>Type: <tt>unreal stop</tt></li>
+            <li>Type: <tt>unreal uninstall</tt></li>
+            <li>Run wircd.exe</li>
+          </ol>
+        </blockquote>
+        <a name="service2"></a>&nbsp;<br>
+        <p><b><u>I don't want this window or system tray icon!</u></b></p>
+        <blockquote> You need to install Unreal as a service.<br>
+          <br>
+          To do this, fillow these steps:
+          <ol>
+            <li>Open a command prompt. (For the mentally challenged, you
+              can get to the command prompt by: Start &gt; Run &gt; cmd)</li>
+            <li>Go to the Unreal directory.</li>
+            <li>Make sure Unreal is NOT running.</li>
+            <li>Type: <tt>unreal install</tt></li>
+            <li>Type: <tt>unreal start</tt></li>
+          </ol>
+        </blockquote>
+        <a name="msvserr"></a>&nbsp;<br>
+        <p><b><u>Error: "This application has failed to start..."</u></b></p>
+        <blockquote> You are getting this error because you do not have
+          the MSVS Redistributable Package installed on your computer.
+          This package is required to run programs compiled with MSVS
+          2008 or newer. You can download the installer for this package
+          here: <a
+href="http://www.microsoft.com/downloads/details.aspx?FamilyID=9b2da534-3e03-4391-8a4d-074b9f2bc1bf&amp;displaylang=en">MSVS
+            Redistributable Package</a> </blockquote>
+        <a name="nostart"></a>&nbsp;<br>
+        <p><b><u>Unreal won't start!</u></b></p>
+        <blockquote> Check service.log in the UnrealIRCd folder. If this
+          log does not exist, look for ircd.log.<br>
+          <br>
+          If these files do not exist, and Unreal is installed as a
+          service, follow the instructions above (<a href="#service">"Why
+            isn't there a window or system try icon?"</a>) for
+          uninstalling the UnrealIRCd service. Once the Unreal service
+          has been uninstalled, run wircd.exe. Any errors encountered
+          when starting Unreal will be displayed. Once these errors are
+          fixed and Unreal starts without error, the service may be
+          reinstalled by following the service installation instructions
+          above (<a href="#service2">"I don't want this window or system
+            tray icon!"</a>).<br>
+          <br>
+          <strong>Note About SSL Certificates:</strong> If you have
+          chosen to encrypt your SSL private key after creating it, you
+          will not be able to install Unreal as a system service. In
+          order to install Unreal as a system service, you will need to
+          decrypt your private key and keep it in plaintext. </blockquote>
+        <a name="compwin"></a>&nbsp;<br>
+        <p><b><u>How do I compile Unreal on Windows?</u></b></p>
+        <blockquote> <strong>Note: these instructions are for 3.2.10,
+            instructions for 3.2.9 and older versions may be found by
+            reading doc/compiling_win32.txt.</strong><br>
+          Before you compile on Windows, you will need the latest
+          version of Microsoft Visual Studio. You can download a <a
+            href="http://www.microsoft.com/express/vc/">free version of
+            MSVC++ Express</a> from Microsoft, which is more than enough
+          to compile UnrealIRCd.<br>
+          <br>
+          <b>READ THESE STEPS ALL THE WAY THROUGH BEFORE STARTING YOUR
+            COMPILE</b>
+          <ol>
+            <li>Download the Unreal tarball (source), and extract all
+              the files to a location on your computer.</li>
+            <li>Download <a href="/donate?dl=devlite">this package of
+                libraries</a> and extract the dev folder to where you
+              extracted the UnrealIRCd source.</li>
+            <li>Open the Visual Studio Command Prompt and navigate to
+              the dev folder inside the UnrealIRCd folder.</li>
+            <li>Run <tt>DoItForMe.bat</tt> by typing it into the
+              command prompt.</li>
+            <li>When the compile has finished, you will have a new
+              folder called bin in the UnrealIRCd folder. This folder
+              will contain all the binaries and DLLs needed to run
+              UnrealIRCd.</li>
+          </ol>
+          For details on the commands used to compile UnrealIRCd, open
+          DoItForMe.bat in a text editor and read the commands from
+          there.<br>
+          <br>
+          <b>Compiling modules for Windows</b>
+          <ol>
+            <li>Make sure you have successfully compiled Unreal by
+              following the instructions above.</li>
+            <li>Place the .c file for the module in src\modules.</li>
+            <li>Open the MSVC Command Prompt and navigate to the
+              location of the Unreal source.</li>
+            <li>Run <tt>nmake -f makefile.win32 custommodule
+                MODULEFILE=module_name</tt> (module_name would be the
+              module filename without the .c extension).</li>
+            <li>A DLL file will be created if no errors occour. The file
+              may be loaded using the loadmodule directive in your conf.</li>
+          </ol>
+        </blockquote>
+        <br>
+        <a name="cloakdll"></a>&nbsp;<br>
+        <p><b><u>Error: cloak.dll access denied OR not found</u></b></p>
+        <blockquote> It seems with every release there is either some
+          antivirus or firewall software blocking cloak.dll from being
+          installed or accessed on a Windows installation. This is also
+          an increasing problem due to the trend of antivirus makers
+          hiding actions from their users, so you don't get a warning.<br>
+          <br>
+          In order to fix this without uninstalling your antivirus
+          software, you must add an exception in the antivirus for the
+          UnrealIRCd program folder. This varies depending on the
+          specific antivirus and version you run, so you should consult
+          your antivirus help. Once that is complete uninstall and
+          reinstall UnrealIRCd (back up your configuration first), and
+          you should be able to access all the files.<br>
+          <br>
+          <strong>NOTE:</strong> As of this writing, it seems only
+          McAfee is detecting cloak.dll as a threat to the system. </blockquote>
+        <br>
+        <hr>
+        <center>
+          <h1>Network and Internet Issues</h1>
+        </center>
+        <a name="pingfreq"></a>&nbsp;<br>
+        <p><b><u>Why do my users constantly get "Ping timeouts"?</u></b></p>
+        <blockquote> This usually happens on low-bandwidth servers. A
+          low-bandwidth server is usually run either from your home,
+          office, or on a crappy shell. To fix this problem, you need to
+          increase the pingfreq in your class block for client
+          connections. A good number to increase this value if 30. By
+          increasing this value, you are telling Unreal to send the
+          PING's further apart.<br>
+          <br>
+          In order to set a good pingfreq, you need to understand that a
+          ping on IRC is not the same as the ping you can do from a
+          terminal or command prompt. A ping on IRC is a server or
+          client sending the PING command over the IRC connection and
+          wait for a matching PONG. When someone pings out on IRC it
+          means they have failed to reply to 2 PINGs with a PONG.<br>
+          <br>
+          You will never be able to eliminate ALL ping timeouts, because
+          a good number of them happen due to the way information is
+          sent over the internet. Most modems/routers provided by ISPs
+          close connections with little or no activity, and the PING
+          command is there to attempt to stop this from happening. Each
+          device that has this "feature" varies from model to model on
+          when they will close the connection.<br>
+          <br>
+          If your pingfreq is set too low, laggy connections won't have
+          sufficient time to reply, and if your pingfreq is too high
+          you'll be exceeding the time it takes for a connection to be
+          considered "idle". It is up to you to find a good medium that
+          produces the fewest ping timeouts based on your clients,
+          server bandwidth, and number of users on your network. We
+          recommend setting it between 60 and 120 (in 15 or 30 second
+          incriments). </blockquote>
+        <a name="connect"></a>&nbsp;<br>
+        <p><b><u>Why can't outside people connect?</u></b></p>
+        <blockquote>
+          <ul>
+            <li>If you connect to the internet through a router, you may
+              want to read its manual. You will need to set up Port
+              Forwarding (see <a href="http://portforward.com">portforward.com</a>
+              for instructions).</li>
+            <li>If you have a firewall, it should be disabled. Firewalls
+              such as ZoneAlarm will block incoming connections.</li>
+            <li>If your server is on Windows XP (SP1), you may want to
+              read the help files about the internal firewall, and make
+              sure it is disabled.</li>
+            <li>If your server is on Windows XP SP2 &amp; SP3, make sure
+              there is an exception on the built-in firewall. See
+              Windows Help for more informationion.</li>
+          </ul>
+          Please keep in mind that running a server of any kind requires
+          basic networking knowledge (such as routers, firewalls, and
+          DNS). If you did not know how to allow public connections on
+          your server, it means you <u><b>DO NOT</b></u> have the
+          knowledge required to run a server. Before going any further
+          with your IRCd, I do suggest you take the time to learn basic
+          networking. If you do not learn these things now, you will
+          only run into more trouble in the future! With most free
+          software there are not helpful people like myself or Unreal's
+          support team willing to take the time and explain these
+          things. </blockquote>
+        <br>
+        <hr>
+        <center>
+          <h1>Configuration</h1>
+        </center>
+        <a name="encrypt"></a>&nbsp;<br>
+        <p><b><u>How do I add encrypted passwords to oper blocks?</u></b></p>
+        <blockquote> The way to do this would be to use Unreal's
+          MKPASSWD command. This command can be used while connected as
+          /mkpasswd or on *nix as ./unreal mkpasswd. The syntax for this
+          command is:
+          <pre>mkpasswd &lt;auth-type&gt; &lt;password&gt;</pre>
+          Unreal supports the following auth-types: crypt, md5, sha1,
+          ripemd-160. This command would give you a result, which is the
+          hashed version of that password. When you have the result from
+          the command, enter the password in the oper block like this:
+          <pre>password &lt;result&gt; { &lt;auth-type&gt;; };</pre>
+          EXAMPLE:
+          <blockquote> If my password was "password" and I wanted it to
+            be hashed with sha1, I would type:<br>
+            <tt>/mkpassword sha1 password</tt><br>
+            <br>
+            Which would give me:<br>
+            *** Authentication phrase (method=sha1, para=password) is:
+            $6L/ybC6i$S8/+1SAx96FcbatLyHzoYJHxxCw=<br>
+            <br>
+            Then I would put it in my oper block as:<br>
+            <tt>password "$6L/ybC6i$S8/+1SAx96FcbatLyHzoYJHxxCw=" {
+              sha1; };</tt><br>
+            <br>
+            I would then be able to oper:<br>
+            <tt>/oper login password</tt> </blockquote>
+          NOTE: It will be different every time you run it! Don't worry,
+          this is because the hashes are salted so they are different
+          each time. It is still the same password. </blockquote>
+        <a name="excessflood"></a>&nbsp;<br>
+        <p><b><u>I have clients exit with "Excess Flood"</u></b></p>
+        <blockquote> This is because your settings for SendQ and RecvQ
+          in the class block are too low. You should increase these
+          values. However, increasing these values too high will cause
+          Unreal to become unstable. </blockquote>
+        <a name="nofakelag"></a>&nbsp;<br>
+        <p><b><u>Why are messages being slowed down? How do I stop it?</u></b></p>
+        <blockquote> In order to protect the IRCd's stability, Unreal
+          has a built-in "fake lag" which slows rapidly sent messages
+          down. In some cases, there may be a bot or user class that you
+          want to allow to send mass amounts of messages without making
+          these people or bots an oper.<br>
+          <br>
+          <b><u>NOTE</u>: In order to configure Unreal to exempt users
+            from fake lag, you MUST be running *NIX and have a full
+            understanding of how the Allow and Class blocks work. If you
+            feel you do not know what you are doing while following
+            these instructions, this feature is not for you!</b><br>
+          <br>
+          <font color="red"><b><u>WARNING</u>: Using this feature will
+              make Unreal vulnerable to attacks, and should only be used
+              for clients and bots that are approved by your staff to be
+              stable and not over-use this feature. <u>DO NOT</u> come
+              to us when you abuse this feaure and Unreal crashes!</b></font><br>
+          <br>
+          To enable this feature in Unreal, follow these steps:
+          <ol>
+            <li>Open include/config.h in the editor of your choice.</li>
+            <li>Locate the line that reads: <tt>#undef
+                FAKELAG_CONFIGURABLE</tt></li>
+            <li>Read the warning above this line. <b>Keep in mind we
+                are not responsible for server crashes caused by
+                changing this setting.</b></li>
+            <li>Change the line so it reads: <tt>#define
+                FAKELAG_CONFIGURABLE</tt></li>
+            <li>Save the file, and return to the main Unreal directory.</li>
+            <li>Run: <tt>make clean all</tt></li>
+            <li>Run make install if needed.</li>
+            <li>Restart Unreal.</li>
+          </ol>
+          To configure your server to exempt certain people, follow
+          these steps:
+          <ol>
+            <li>In unrealircd.conf, create a new class. Set the options
+              as you please.</li>
+            <li>Specify class::options::nofakelag in your new class
+              block.</li>
+            <li>Create an allow block, be sure to specify BOTH IP and
+              host, otherwise it may match everyone. Read "about
+              matching" in the Allow Block section of Unreal's
+              documentation for more information.</li>
+            <li>Rehash the server and have the affected users reconnect.</li>
+          </ol>
+        </blockquote>
+        <a name="meshlink"></a>&nbsp;<br>
+        <p><b><u>Is it possible to do mesh linking?</u></b></p>
+        <blockquote> As of writing this, mesh linking is currently not
+          available in any IRCd. Unreal may not support it, but Unreal
+          does have excellent linking features to allow server
+          administrators to configure redundant linking that would be
+          put into affect as soon as a server splits from the network.<br>
+          <br>
+          To set up your server, all you need to do is follow these
+          instructions:
+          <ol>
+            <li>Add a link block for every server in each server's conf.
+              If you compiled Unreal for Remote Includes, you should be
+              able to put the link information into 1 conf file and have
+              the servers share it.</li>
+            <li>Enable the Auto Connect option in every link block.</li>
+            <li><strong>On Unreal 3.2.8.1 and older</strong>, you will
+              need to add Deny Link blocks for every server in your
+              network. This will stop the servers from trying to link
+              when the server is already in the network. The syntax you
+              will need to use is:<br>
+              <tt>deny link { mask "servername"; rule
+                connected("servername"); type "auto"; };</tt><br>
+              Both servernames should be the same as the server in the
+              link block. For example, if you have a link block for
+              server1.example.com, you would set server1.example.com in
+              both servername fields in that Deny Link Block. Remember,
+              you need one Deny Link block for every link block on every
+              server! (this is one reason why using remote includes
+              would be best)</li>
+            <li>As an added option if you have a host to spare, it would
+              make your network more solid to do the same with the
+              services. Unfortunately, because services developers lack
+              the ability of thinking outside the box, most services do
+              not support SSL and will exit when the link goes down.
+              Solutions to the SSL issue would be to use sTunnel and
+              configure a different port for each server on your
+              network, then have the server list in your services go to
+              the different sTunnel ports. To get around the services
+              exiting when link fails, you should use crontab and a
+              check script.</li>
+          </ol>
+        </blockquote>
+        <a name="channels"></a>&nbsp;<br>
+        <p><b><u>How do I make it so users can't create their own
+              channels?</u></b></p>
+        <blockquote> The best way to achieve this would be to set Deny
+          Channel to *, and have an Allow Channel block for each channel
+          you would like.<br>
+          <br>
+          Such configuration would look like:
+          <blockquote> <tt>deny channel { channel "*"; reason "Only
+              approved channels are allowed"; };</tt><br>
+            <tt>allow channel { channel "#Channel-1"; };</tt><br>
+            <tt>allow channel { channel "#Channel-2"; };</tt><br>
+            <tt>allow channel { channel "#Channel-3"; };</tt> </blockquote>
+          Other options include such things as using a module (such as
+          m_onlyopersjoin) which requires oper status to create
+          channels, or the use of a services package that denies the
+          creation or registration of unapproved channels. </blockquote>
+        <a name="stopserver"></a>&nbsp;<br>
+        <p><b><u>How do I stop a delinked server from trying to connect?</u></b></p>
+        <blockquote> You can stop an unauthorized server from connecting
+          by Z:Lining its IP address. A Z:Lined address is disconnected
+          before Unreal processes any information sent, so this will
+          affect both clients and servers from connecting from the
+          address. </blockquote>
+        <br>
+        <hr>
+        <center>
+          <h1>Modules</h1>
+        </center>
+        <a name="installmod"></a>&nbsp;<br>
+        <p><b><u>How do I install modules?</u></b></p>
+        <blockquote> On *NIX:
+          <ol>
+            <li>Download the module you wish to install, and put the .c
+              file in src/modules.</li>
+            <li>From the main Unreal source directory, run <tt>make
+                custommodule MODULEFILE=module_name</tt> (without the
+              .c)</li>
+            <li>If you specified a different install path in ./Config,
+              run make install</li>
+            <li>Add the line <tt>loadmodule /path/to/module_name.so;</tt>
+              to your unrealircd.conf.</li>
+            <li>Rehash your server.</li>
+          </ol>
+          On Windows:
+          <ol>
+            <li>Download the Windows compiled version (.DLL) of the
+              module you wish to load. If you do not know where you can
+              download a pre-compiled module for windows, try my <a
+                href="/modules">module page</a>.</li>
+            <li>Copy the .DLL file into the modules folder where Unreal
+              is installed.</li>
+            <li>Add the line <tt>loadmodule modules/module_name.dll;</tt>
+              to your unrealircd.conf</li>
+            <li>Rehash your server.</li>
+          </ol>
+        </blockquote>
+        <a name="reqmod"></a>&nbsp;<br>
+        <p><b><u>Where can I request custom modules?</u></b></p>
+        <blockquote> There are a couple ways to get a custom module
+          created for you. The first would be to put a request in the <a
+            href="http://forums.unrealircd.com/viewforum.php?f=6">Modules
+            Section</a> on the UnrealIRCd forums, and the second way
+          would be to pay a developer to create the module for you.
+          Syzop offers custom coding on <a
+            href="http://www.vulnscan.org">his website</a> for a small
+          fee. Included on his website is also a list of modules
+          commonly requested and how much they cost. </blockquote>
+        <a name="learnmod"></a>&nbsp;<br>
+        <p><b><u>Where do I learn how to code modules?</u></b></p>
+        <blockquote> Learning to code modules first requires knowing how
+          to code in C. From there we suggest learning how to create
+          modules based on the modules already part of UnrealIRCd and
+          from the modules created by third parties. There are a couple
+          modules that will assist in your learning already included
+          with Unreal, the first one is m_template.c in the main Unreal
+          directory, and m_dummy.c in the module source folder. </blockquote>
+        <a name="modtable"></a>&nbsp;<br>
+        <p><b><u>Is there a list of what modes and commands modules
+              give?</u></b></p>
+        <blockquote>
+          <p><strong>Note:</strong> This table is most likely
+            incomplete! I added all the more popular modules I could
+            think of. There may be some inaccuracies, please check your
+            modules and what they provide before loading new ones.</p>
+          <table border="1" cellpadding="2" cellspacing="0">
+            <tbody>
+              <tr align="center">
+                <td><b>Module</b></td>
+                <td><b>Channel Modes</b></td>
+                <td><b>User Modes</b></td>
+                <td><b>SNOmasks</b></td>
+                <td><b>ExtBans</b></td>
+                <td><b>Commands</b></td>
+              </tr>
+              <tr>
+                <td align="left">callerid</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">I</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">ACCEPT</td>
+              </tr>
+              <tr>
+                <td align="left">chansno</td>
+                <td colspan="5" align="center" bgcolor="#dddddd"><i>This
+                    module provides internal functions only.</i></td>
+              </tr>
+              <tr>
+                <td align="left">cmdflood</td>
+                <td colspan="5" align="center" bgcolor="#dddddd"><i>This
+                    module provides internal functions only.</i></td>
+              </tr>
+              <tr>
+                <td align="left">cmdshun</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">CMDSHUN</td>
+              </tr>
+              <tr>
+                <td align="left">commandsno</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">C</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">courtroom</td>
+                <td align="center">U</td>
+                <td align="center">U</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">SUSPEND</td>
+              </tr>
+              <tr>
+                <td align="left">identonly</td>
+                <td align="center">X</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">joinpartsno</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">J</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">m_adult</td>
+                <td align="center">X</td>
+                <td align="center">X</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">m_allwhois</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">E</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">m_banlink</td>
+                <td align="center">B</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">m_blocknonalpha</td>
+                <td align="center">y</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">m_chgswhois</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">SETSWHOIS CHGSWHOIS</td>
+              </tr>
+              <tr>
+                <td align="left">m_clones</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">CLONES</td>
+              </tr>
+              <tr>
+                <td align="left">m_defaultlist</td>
+                <td colspan="5" align="center" bgcolor="#dddddd"><i>This
+                    module provides internal functions only.</i></td>
+              </tr>
+              <tr>
+                <td align="left">m_delayjoin</td>
+                <td colspan="5" align="center" bgcolor="#dddddd"><i>This
+                    module provides internal functions only.</i></td>
+              </tr>
+              <tr>
+                <td align="left">m_elmer</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">ELMER</td>
+              </tr>
+              <tr>
+                <td align="left">m_hostforward</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">f</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">m_netadminsonly</td>
+                <td align="center">W</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">m_nobots</td>
+                <td align="center">B</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">m_nochan</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">NOCHAN</td>
+              </tr>
+              <tr>
+                <td align="left">m_nonickchange</td>
+                <td colspan="5" align="center" bgcolor="#dddddd"><i>This
+                    module provides internal functions only.</i></td>
+              </tr>
+              <tr>
+                <td align="left">m_onlyopersjoin</td>
+                <td colspan="5" align="center" bgcolor="#dddddd"><i>This
+                    module provides internal functions only.</i></td>
+              </tr>
+              <tr>
+                <td align="left">m_quarantine</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">VIRUSCHAN VIRUSREL</td>
+              </tr>
+              <tr>
+                <td align="left">m_regonlylist</td>
+                <td colspan="5" align="center" bgcolor="#dddddd"><i>This
+                    module provides internal functions only.</i></td>
+              </tr>
+              <tr>
+                <td align="left">m_restrictedjoin</td>
+                <td colspan="5" align="center" bgcolor="#dddddd"><i>This
+                    module provides internal functions only.</i></td>
+              </tr>
+              <tr>
+                <td align="left">m_restrictrehash</td>
+                <td colspan="5" align="center" bgcolor="#dddddd"><i>This
+                    module provides internal functions only.</i></td>
+              </tr>
+              <tr>
+                <td align="left">m_sanick</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">SANICK</td>
+              </tr>
+              <tr>
+                <td align="left">m_securequery</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">Z</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">m_sendraw</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">SENDRAW</td>
+              </tr>
+              <tr>
+                <td align="left">m_servlist</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">SERVLIST</td>
+              </tr>
+              <tr>
+                <td align="left">m_soper</td>
+                <td colspan="5" align="center" bgcolor="#dddddd"><i>This
+                    module provides internal functions only.</i></td>
+              </tr>
+              <tr>
+                <td align="left">m_staff</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">STAFF</td>
+              </tr>
+              <tr>
+                <td align="left">m_tkl_export</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">TKLEXPORT</td>
+              </tr>
+              <tr>
+                <td align="left">m_tkl_import</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">TKLIMPORT</td>
+              </tr>
+              <tr>
+                <td align="left">m_uline</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">U</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">ULINE</td>
+              </tr>
+              <tr>
+                <td align="left">nickrange</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">NICKRANGE</td>
+              </tr>
+              <tr>
+                <td align="left">nocolorumode</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">c</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">noctcp</td>
+                <td align="center">D</td>
+                <td align="center">mM</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">nopost</td>
+                <td colspan="5" align="center" bgcolor="#dddddd"><i>This
+                    module provides internal functions only.</i></td>
+              </tr>
+              <tr>
+                <td align="left">operjoin</td>
+                <td colspan="5" align="center" bgcolor="#dddddd"><i>This
+                    module provides internal functions only.</i></td>
+              </tr>
+              <tr>
+                <td align="left">operpasswd</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">O</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">opers</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">ADDOPER ADDROPER ADDGOPER DELOPER
+                  DELROPER DELGOPER MODOPER MODROPER MODGOPER CONFOPER
+                  CONFROPER MASTERPASS</td>
+              </tr>
+              <tr>
+                <td align="left">PrivDeaf</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">D</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">regexban</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">R</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">RegExcept</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">E</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">regexkill</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">RKILL</td>
+              </tr>
+              <tr>
+                <td align="left">TextBan</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">T</td>
+                <td align="left">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="left">umode</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">UMODE</td>
+              </tr>
+              <tr>
+                <td align="left">vhosts</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="left">ADDVHOST ADDRVHOST ADDGVHOST DELVHOST
+                  DELRVHOST DELGVHOST MODVHOST MODRVHOST MODGVHOST
+                  CONFVHOST CONFRVHOST</td>
+              </tr>
+            </tbody>
+          </table>
+        </blockquote>
+        <br>
+        <hr>
+        <center>
+          <h1>IRC Support</h1>
+        </center>
+        <a name="mibbit"></a>&nbsp;<br>
+        <p><b><u>Why is the use of Mibbit not allowed in the Unreal
+              support channel?</u></b></p>
+        <blockquote> Currently we do not allow people using Mibbit or
+          Mibbit-like IRC clients to get support. Mibbit hides the IP
+          addresses of users, which makes it impossible for UnrealHelper
+          to track users. We fully understand there are "workarounds"
+          and full support on UnrealIRCd networks for mibbit. Here are a
+          few reasons why Mibbit is not supported for IRC support:
+          <ol>
+            <li>Modifying UnrealHelper to detect and use the IP encoded
+              into the ident will not only be time-consuming, but very
+              inefficient making UnrealHelper slower than it already is.</li>
+            <li>UnrealHelper has no way of turning the decoded mibbit IP
+              into a proper cloaked host/IP used to track users and to
+              match mibbit users with existing users using direct
+              connections.</li>
+            <li>People wishing to run an IRC server should really be
+              using a direct connection to IRC (in other words, using a
+              real client).</li>
+          </ol>
+        </blockquote>
+        <a name="quiz"></a>&nbsp;<br>
+        <p><b><u>Why is there a quiz to get support?</u></b></p>
+        <blockquote> We require people to take a quiz for a few reasons.
+          The quiz is there to gather information about your set up for
+          us, as well as qualify you for support. We understand most
+          help channels will help anyone who happens to stumble in, but
+          we're here to provide a higher level of support to the users.
+          In order to provide a higher level of support to our users, we
+          require they have read the docs, FAQ, and have a basic
+          understanding of their operating system and networking. Since
+          these are required, we can then offer full solutions to
+          problems without the "RTFM" and "Google it" parts. </blockquote>
+        <a name="uhelper"></a>&nbsp;<br>
+        <p><b><u>Is the quiz open source?</u></b></p>
+        <blockquote> To put it simply: no.<br>
+          <br>
+          The reason UnrealHelper is not open source is primarily
+          because UnrealHelper is custom coded specifically to
+          #Unreal-Support's needs. Another reason UnrealHelper is not
+          open source is because it contains sensitive information such
+          as passwords.<br>
+          <br>
+          The quiz and bot are basically 2 separate parts sharing the
+          same SQL database. The database has 4 tables, one for each
+          type of questions (windows, *nix, general IRC, and network).
+          Each table has 6 fields, one for the question, 4 for each of
+          the answer options, and 1 for the single-letter correct
+          answer. The website takes the information entered into the
+          quiz and generates the answer, starting with !, the letter of
+          your OS selection (n or w), then the 6 quesion/answer pairs in
+          &lt;question number&gt; + "-" + &lt;answer letter&gt;, and
+          lastly adding 1 for a modified IRCd and 0 for vanilla. The
+          final quiz answer looks like !n1-a2-b3-c4-d5-a6-b0<br>
+          <br>
+          The bot then takes that answer and compares it to the SQL
+          database. It starts first by splitting up the answer string
+          into sensible sections, something like: n 1-a 2-b 3-c 4-d 5-a
+          6-b 0. It checks the first two questions depending on the OS
+          letter (n or w), then compares the question number and given
+          answer with the question number and correct answer fields in
+          the database. It then moves to the next two answer pairs to
+          check general IRC questions, then finally the last 2 pairs for
+          network questions. It counts each correct answer, and weights
+          the final decision based on the 'modified' flag.<br>
+          <br>
+          With the given information in the answer string, it then knows
+          whether it should voice the user submitting or deny the user
+          access. To remember users who passed, it uses a simple address
+          list based on the 3rd address mask (*!*ident@*.some.isp.com).
+          To prevent answer sharing, a list of submitted answers is
+          periodically audited and shared answers are deactivated. The
+          same answer may not be given twice in a row. </blockquote>
+        <a name="voice"></a>&nbsp;<br>
+        <p><b><u>Will I ever need to retake the quiz?</u></b></p>
+        <blockquote> You will need to take the quiz under the following
+          conditions:
+          <ul>
+            <li>Your user@host changes.</li>
+            <li>You leave the channel and don't return for 28 days.</li>
+          </ul>
+        </blockquote>
+        <a name="avoice"></a>&nbsp;<br>
+        <p><b><u>Can I be added to the VOP list?</u></b></p>
+        <blockquote> Voicing users in #Unreal-Support is entirely left
+          to UnrealHelper. The reason for this is the VOP list cannot be
+          restricted to addresses which makes the possibility for
+          passwords to be shared and accounts to be abused. In the event
+          UnrealHelper is not online, the channel is unmoderated and
+          anyone may speak.<br>
+          <br>
+          To add to that, the quiz is not made to be difficult and if
+          you need to continue taking the quiz it should not take any
+          longer than 30 seconds to go through the questions and get a
+          new code. </blockquote>
+        <br>
+        <hr>
+        <center>
+          <h1>Everything Else</h1>
+        </center>
+        <a name="lusers"></a>&nbsp;<br>
+        <p><b><u>How can I reset the user counts after a botnet attack?</u></b></p>
+        <blockquote> To reset user counts, follow these instructions on
+          all affected servers:
+          <ol>
+            <li>Stop Unreal</li>
+            <li>Delete the file named ircd.tune</li>
+            <li>Restart Unreal</li>
+          </ol>
+        </blockquote>
+        <a name="getrealip"></a>&nbsp;<br>
+        <p><b><u>How do I get the real host/ip of an user?</u></b></p>
+        <blockquote> These are the only ways to retrieve a users real IP
+          or host:
+          <ol>
+            <li>/whois user (as oper)</li>
+            <li>/who +R user (as oper)</li>
+            <li>/who +I user (as oper)</li>
+            <li>/userip user (as oper)</li>
+            <li>/userhost user (as oper)</li>
+            <li>/whowas user (as oper)</li>
+            <li>Check Unreal's logs (if you were smart and enabled
+              connect logging)</li>
+            <li>Look for the "client connecting" or "client exiting"
+              notice in your scrollback or client logs.</li>
+          </ol>
+          This is all explained in Unreal's documentation, please read
+          the docs and learn how to use your server. If you can't or
+          don't want to do that, you shouldn't be running an IRCd. </blockquote>
+        <a name="getnicks"></a>&nbsp;<br>
+        <p><b><u>How do I see who connected from a specific IP?</u></b></p>
+        <blockquote> Unreal does not store this information in such a
+          way that it can be retrieved without modules (as of writing,
+          no module exists to do this). The only methods in existance
+          that are usable to server admins are: your client's
+          scrollback/logs, and Unreal's logs. It would be extremely
+          simple to grep through either of the logs for the IP you're
+          looking up. If you didn't have any logs on the server with the
+          connect flag, then you probably should enable that now! </blockquote>
+        <a name="opers"></a>&nbsp;<br>
+        <p><b><u>How do I keep opers from attacking higher opers?</u></b></p>
+        <blockquote>
+          <ul>
+            <li>If you think you have an oper that is going to kill or
+              ban another oper, he/she should not have an O:Line.</li>
+            <li>If there is an oper who is abusing their power on
+              another server in the network, and that server's admin is
+              refusing to talk to that oper or remove his/her O:Line,
+              that server does not belong on the network. Delink it.</li>
+            <li>If you don't own the network and the other admins are
+              refusing to do anything about the abusive oper, find a
+              better network to link to.</li>
+            <li>Also note, that if the oper in question is on another
+              server, you are required to run such modules that "fix
+              this" on every server on the network. If the other admins
+              are refusing to cooperate, then you can't use a module
+              anyway.</li>
+          </ul>
+          <p>There you have it, plain and simple solutions. It all comes
+            down to: <u><b>If you don't trust the oper, or the oper is
+                attacking other opers, then why does he/she have an
+                O:line?</b></u></p>
+        </blockquote>
+        <a name="hideidle"></a>&nbsp;<br>
+        <p><b><u>How do I hide my idle time?</u></b></p>
+        <blockquote> There is no way to remove the idle time from WHOIS
+          without modifying the source. As mentioned many times,
+          modifying the source voids your privilege to receive support
+          (the general rule is "if you can edit it, you can fix it when
+          you break it").<br>
+          <br>
+          However, if you do not wish to have your idle time displayed
+          in WHOIS, you can always put in a false idle time by creating
+          timed scripts to reset your idle. The idle time is reset each
+          time you send a message, or CTCP. All you need to do is use
+          one of these methods to create that. Pretty simple stuff!<br>
+          <br>
+          Note that if you are hiding your idle time because you do not
+          wish to be disturbed is not the proper thing to do. There are
+          things already in place to tell people to leave you alone as
+          it is. You have AWAY, umode +D (provided by privdeaf), and +R.
+          Also, the ability to hide your idle time will likely NOT be
+          added to Unreal as a feature - there's not much use for such a
+          feature. </blockquote>
+        <a name="versioninfo"></a>&nbsp;<br>
+        <p><b><u>What do all the characters mean in /version?</u></b></p>
+        <blockquote> These are compile and runtime flags associated to
+          what options are enabled on Unreal, as well as what hooks
+          modules might be using within Unreal.<br>
+          <br>
+          Here's what they mean:
+          <table border="0" cellpadding="1" cellspacing="1">
+            <tbody>
+              <tr>
+                <td align="center">3</td>
+                <td>3rd party modules have been loaded, or Unreal is
+                  'tainted' (ex: bad libs)</td>
+              </tr>
+              <tr>
+                <td align="center">6</td>
+                <td>IPv6 is supported</td>
+              </tr>
+              <tr>
+                <td align="center">C</td>
+                <td>Command line config enabled</td>
+              </tr>
+              <tr>
+                <td align="center">c</td>
+                <td>Server is chrooted</td>
+              </tr>
+              <tr>
+                <td align="center">D</td>
+                <td>Server is in Debug Mode</td>
+              </tr>
+              <tr>
+                <td align="center">E</td>
+                <td>Extended channel modes supported</td>
+              </tr>
+              <tr>
+                <td align="center">e</td>
+                <td>SSL is supported</td>
+              </tr>
+              <tr>
+                <td align="center">F</td>
+                <td>Using file descriptor lists</td>
+              </tr>
+              <tr>
+                <td align="center">h</td>
+                <td>Compiled as a hub</td>
+              </tr>
+              <tr>
+                <td align="center">i</td>
+                <td>Shows invisible (+i) users in /trace</td>
+              </tr>
+              <tr>
+                <td align="center">K</td>
+                <td>No ident checking</td>
+              </tr>
+              <tr>
+                <td align="center">M</td>
+                <td>A module has hooked channel messages</td>
+              </tr>
+              <tr>
+                <td align="center">m</td>
+                <td>A module has hooked private messages</td>
+              </tr>
+              <tr>
+                <td align="center">n</td>
+                <td>NOSPOOF is enabled</td>
+              </tr>
+              <tr>
+                <td align="center">O</td>
+                <td>OperOverride is enabled</td>
+              </tr>
+              <tr>
+                <td align="center">o</td>
+                <td>OperOverride is enabled without verify</td>
+              </tr>
+              <tr>
+                <td align="center">P</td>
+                <td>Uses Poll()</td>
+              </tr>
+              <tr>
+                <td align="center">V</td>
+                <td>Uses valloc()</td>
+              </tr>
+              <tr>
+                <td align="center">W</td>
+                <td>Windows version</td>
+              </tr>
+              <tr>
+                <td align="center">X</td>
+                <td>STRIPBADWORDS is enabled</td>
+              </tr>
+              <tr>
+                <td align="center">Y</td>
+                <td>Syslog logging is enabled</td>
+              </tr>
+              <tr>
+                <td align="center">Z</td>
+                <td>Zip links is enabled</td>
+              </tr>
+            </tbody>
+          </table>
+        </blockquote>
+        <a name="SA_Error"></a>&nbsp;<br>
+        <p><b><u>I get permission denied when trying to use
+              SAJOIN/SAPART/SAMODE</u></b></p>
+        <blockquote> <b>If you're using Anope:</b>
+          <blockquote> If you are using Anope, be sure you have <tt>UnRestrictSAdmin</tt>
+            defined in your services configuration. If you do not you
+            will need to add it, rehash or restart services, and
+            re-oper. When <tt>UnRestrictSAdmin</tt> is not set, Anope
+            will not allow the usermode +a to be used by any oper that
+            is not listed as a Services Admin in Anope's database.
+            Usermode +a is required to use SAJOIN/SAPART/SAMODE. </blockquote>
+          If the above does not apply to you there is likely a problem
+          in your Unreal oper configuration. Verify that you have either
+          netadmin or services-admin defined as a flag in your oper
+          block, and "a" appears in the list of flags in <tt>/stats o</tt>.
+          Remember that if you make any changes to your oper block, you
+          will need to de-oper (by using <tt>/mode yournick -o</tt>, or
+          reconnecting), then re-oper for any changes to take affect. </blockquote>
+        <a name="InstallBOPM"></a>&nbsp;<br>
+        <p><b><u>How do I set up a BOPM?</u></b></p>
+        <blockquote> A BOPM is extremely easy to set up, and will play a
+          large role in preventing drone and flood attacks on your
+          network if configured using good blacklists. To set up a BOPM
+          on your network, simply follow these directions (*NIX only):
+          <ol>
+            <li>Download the latest version of BOPM from <a
+                href="http://wiki.blitzed.org/BOPM">http://wiki.blitzed.org/BOPM</a>
+              to your server using wget or similar.</li>
+            <li>Untar the files to the directory of your choice, and cd
+              into the new directory created when untarring the files.</li>
+            <li>Run <tt>./configure &amp;&amp; make &amp;&amp; make
+                install &amp;&amp; cd ~/bopm/etc</tt></li>
+            <li>Download my example BOPM configuration file from <a
+                href="/donate?dl=bopmconf">this link</a>.</li>
+            <li>Edit the downloaded file to your liking, and rename it
+              to bopm.conf.</li>
+            <li>Add an O:Line in Unreal for the BOPM with the proper
+              permissions (don't forget to rehash).</li>
+            <li>Run ~/bopm/bin/bopm to get the BOPM started.</li>
+          </ol>
+          I <b>strongly</b> recommend you use the DroneBL and ProxyBL
+          blacklists. DroneBL is a blacklist maintained by the IRC
+          community and is usually the most up-to-date blacklist when it
+          comes to stopping malicious users and spammers. ProxyBL is
+          strongly recommended because it contains a list of open
+          proxies which have been published through the most popular
+          proxy sites. The only way to get an IP removed from ProxyBL is
+          to shut down the proxy running on it and wait for a re-scan. </blockquote>
+        <a name="noreply"></a>&nbsp;<br>
+        <p><b><u>Nothing happens when I use my aliases</u></b></p>
+        <blockquote> This is a common issue when your
+          set::services-server is not set properly. For proper operation
+          from your alias blocks, check the following:
+          <ul>
+            <li>Make sure set::services, the link name, and the server
+              name in your services configuration file all match.</li>
+            <li>Remember that set::services-server is cAsE-sEnSiTiVe,
+              and will not work if you have a different case.</li>
+            <li>Make sure your services are online and connected to your
+              server.</li>
+          </ul>
+        </blockquote>
+        <a name="005"></a>&nbsp;<br>
+        <p><b><u>How do I hide/remove the server information on connect?</u></b></p>
+        <blockquote> Short answer: Not possible. Some clients do have
+          the option to hide this information, but it may not be hidden
+          or removed for everyone and still be a functioning IRC server.<br>
+          <br>
+          Long answer: the information shown when a client connects is
+          the server telling the client what is and is not allowed on
+          the network. This contains information such as how ops are
+          displayed in channels, what channel types are allowed, what
+          commands and modes the server has available, the server name,
+          the network name, the list goes on. Without this information
+          your IRC client will not know what to do on this server, and
+          will not be able to send the proper commands for IRC to work.
+        </blockquote>
+        <a name="upgrading"></a>&nbsp;<br>
+        <p><b><u>How do I upgrade UnrealIRCd?</u></b></p>
+        <blockquote> Upgrading UnrealIRCd to the newest version can be
+          easily done while minimizing downtime for users.<br>
+          <br>
+          <strong>Before upgrading UnrealIRCd:</strong>
+          <ol>
+            <li>Check the release notes to see if there are any changes
+              that need to be made to your configuration. Be sure to
+              read ALL release notes for every version between your
+              version and the latest.</li>
+            <li>Make any desired or required changes to your
+              configuration.</li>
+            <li>Copy all the configuration files you use to a different
+              location (any *.conf files, SSL certificates, etc).</li>
+            <li>Download the latest version of UnrealIRCd for your
+              system.</li>
+            <li><strong>Read through the upgrade instructions for your
+                system BEFORE doing them.</strong></li>
+          </ol>
+          <strong>Upgrading *NIX:</strong><br>
+          <ol>
+            <li>Extract the source to your home directory, as if you
+              were installing UnrealIRCd for the first time.</li>
+            <li>Gather the source files for any custom modules you may
+              be using.</li>
+            <li>Run <tt>./Config</tt> and answer the questions. If you
+              have UnrealIRCd installed to its own directory (like
+              /home/you/unreal), be sure to specify the SAME directory
+              here. Otherwise, the default or a different directory may
+              be used.</li>
+            <li>Run <tt>make</tt> to compile UnrealIRCd.</li>
+            <li>Compile any custom modules you may be using.</li>
+            <li>Run <tt>make install</tt> if you specified a different
+              path in ./Config.</li>
+            <li>Veify that your configuration files and custom modules
+              are present in the UnrealIRCd directory, copy them if
+              needed.</li>
+            <li>Restart UnrealIRCd</li>
+          </ol>
+          <strong>Upgrading on Windows:</strong>
+          <ol>
+            <li>Gather or compile any custom modules you may be running.</li>
+            <li>Shut down UnrealIRCd.</li>
+            <li>Run the installer and select the same installation
+              location.</li>
+            <li>Veify that your configuration files are in the
+              UnrealIRCd folder, copy them if needed.</li>
+            <li>Start UnrealIRCd.</li>
+          </ol>
+        </blockquote>
+      </div>
+      <div id="footer"> Site design ©2007 <a
+          href="http://www.realitysoftware.ca">Reality Software</a>
+        &nbsp;<span class="separator">|</span>&nbsp; Content ©2008-2014
+        The X-Tab Project </div>
+    </div>
+  </body>
+</html>
