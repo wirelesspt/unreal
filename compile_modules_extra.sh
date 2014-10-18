@@ -29,3 +29,6 @@ make custommodule MODULEFILE=nopost
 make custommodule MODULEFILE=f_ulinessl
 make custommodule MODULEFILE=m_securequery
 make custommodule MODULEFILE=noctcp
+make custommodule MODULEFILE=m_sanick
+make custommodule MODULEFILE=m_nocaps
+make custommodule MODULEFILE=m_listreg
