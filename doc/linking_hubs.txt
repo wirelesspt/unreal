@@ -25,15 +25,21 @@ server1.yourdomain.tld will have the following link block:
 Code: 
     link server2.yourdomain.tld {
        username *;
-       hostname 5.6.7.8;
+       hostname ip.ip.ip.ip;
        bind-ip *;
-       port 8097;
+       port 6690;
        hub *;
-       password-connect "LiNk";
-       password-receive "LiNk";
+       password-connect "LiNk1";
+       password-receive "LiNk2";
        class servers;
-    };
-
+       options {
+               ssl;
+               zip;
+               nohostcheck;
+               nodnscache;
+               autoconnect;
+        };
+};
 
 
 And server2.yourdomain.tld will have this:
@@ -41,14 +47,21 @@ And server2.yourdomain.tld will have this:
 Code: Select all
     link server1.yourdomain.tld {
        username *;
-       hostname 1.2.3.4;
+       hostname ip.ip.ip.ip;
        bind-ip *;
-       port 8067;
+       port 6690;
        hub *;
-       password-connect "LiNk";
-       password-receive "LiNk";
+       password-connect "LiNk2";
+       password-receive "LiNk1";
        class servers;
-    };
+       options {
+               ssl;
+               zip;
+               nohostcheck;
+               nodnscache;
+               autoconnect;
+        };
+};
 
 
 
