@@ -1,4 +1,3 @@
-
 #########################################################################
 #  _       _  _  ___    ___    _      ___    ___    ___    ___   _____  #
 # ( )  _  ( )(_)|  _`\ (  _`\ ( )    (  _`\ (  _`\ (  _`\ (  _`\(_   _) #
@@ -9,36 +8,38 @@
 #                                                                       #
 #########################################################################
 
-		         Fundada a 15/02/2009
+                         Fundada a 15/02/2009
 
            ##################################################
            #    UTILIZE SEMPRE CRIPTOGRAFIA (SSL OU TLS)    #
            ##################################################
- 
+
                 :: POLITICA DE ACESSO A ESTE SISTEMA ::
 
                    http://wirelesspt.net/wiki/irc
                    http://wirelesspt.net/wiki/regras
 
-      Este  servidor é uma maquina privada e o acesso à mesma está
+      Este servidor é uma maquina privada e o acesso à mesma está
       condicionado ao cumprimento das seguintes normas:
- 
-       + Não é permitido: Spam, Clones, Warez, ou qualquer uso para
-         fins ilegais.
- 
+
+      + O uso de criptografia é obrigatório com OTR, Blowfish & PGP
+      + A rede fornece e permite acesso anónimo via Tor
+      + Não é permitido: qualquer uso para para fins ilegais
+
          O incumprimento destas normas constitui o acesso ilegal a
          esta máquina e como tal considerado ilegal perante as leis
          actualmente em vigor.
- 
-         Seja bem-vindo! 
- 
+
+         Seja bem-vindo!
+
          |SERVIDOR|                  |PORTOS DISPONIVEIS|
 
-         irc.wirelesspt.net          6667, 6697 (SSL)
+         irc.wirelesspt.net                6697 (SSL)
+         iqjk36khnazfjgre.onion            6697 (SSL)
          https://wirelesspt.net:6698            (SSL)
 
        # Contacto:                    suporte@wirelesspt.net
-  
+
        * Server admin: cmsv           (administrador de rede)
        * Server admin: migs           (administrador de rede)
 
@@ -48,3 +49,4 @@
  #                                                                      #
  ########################################################################
 
+(revisto: 06/05/2015)
