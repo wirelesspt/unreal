@@ -103,7 +103,10 @@ ATTENTION ! You may want to change the following files:
  settings/me/me.conf
  settings/admin.admin.conf
  settings/network/network.conf
- settings/motd/ircd.motd + ircd.motd.pt + ircd.motd.ssl
+ settings/motd/ircd.motd.pt 
+ settings/motd/ircd.motd.ssl.pt 
+ settings/motd/ircd.motd.en 
+ settings/motd/ircd.motd.ssl.en
 
 You will need to change this files if you want to link to another hub or leaf:
 
