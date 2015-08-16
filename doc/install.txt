@@ -1,3 +1,16 @@
+Requirements:
+
+Linux operating system, user shell access though ssh & few MB's of ram
+
+Make you sure you have the following packages installed:
+ gcc, the latest stable openssl, openssl development libs, git and zlib 
+
+ Debian based distros need: 
+ # apt-get install build-essential gcc openssl libssl-dev zlib1g zlib1g-dev git
+
+ Gentoo based need:
+ emerge -av gcc openssl zlib git
+
 Instructions:
 As root user in you server create a new user in the box:
 
@@ -99,9 +112,6 @@ Add a crontab that checks unrealircd and starts it at boot using provided script
 
 (if you get any errors make sure you are in the crontab group)
 
-Remove files not needed:
- $ ./clean_extra_files.sh
-
 Finally ajust the templates to your preferences and restart unreal
 
 ATTENTION ! You may want to change the following files:
@@ -131,6 +141,9 @@ Note: If you have more than one server or want to link to another server
 Your ircd should be able to start without a problem now:
  $ cd ~/unreal/
  $ ./unreal start
+
+ Remove files not needed:
+ $ ./clean_extra_files.sh
 
 For wiki support you can visit https://wirelesspt.net/wiki/ircd and our forums
 

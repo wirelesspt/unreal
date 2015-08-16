@@ -1,4 +1,4 @@
-Unreal Ircd Custom Installation
+Unreal 3.2.* Ircd Custom Installation
 ===============================
 
 The git repository where you are getting this unrealircd configuration 
