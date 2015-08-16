@@ -18,12 +18,15 @@ branch at https://www.unrealircd.org/download
 Download the templates:
  $ git clone https://github.com/wirelesspt/unreal.git
 
+Goto the download page:
+ https://www.unrealircd.org/download/3.2/10.5/src
+
 Download the sources:
- $ wget --no-check-certificate https://www.unrealircd.org/downloads/Unreal3.2.10.4.tar.gz
+ $ wget --no-check-certificate https://www.unrealircd.org/downloads/Unreal3.2.10.5.tar.gz
 
 Extract the source files:
- $ tar -zxvf Unreal3.2.10.4.tar.gz
- $ cd Unreal3.2.10.4/
+ $ tar -zxvf Unreal3.2.10.5.tar.gz
+ $ cd Unreal3.2.10.5/
 
 Compile the sources:
  $ ./Config; make; make install
