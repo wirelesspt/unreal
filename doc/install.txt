@@ -24,6 +24,10 @@ Goto the download page:
 Download the sources:
  $ wget --no-check-certificate https://www.unrealircd.org/downloads/Unreal3.2.10.5.tar.gz
 
+At this point you may want to check the authenticity of this file after it has been downloaded. 
+Doing so will help to make sure your download has not been tampered with. 
+Follow the instructions on the download page to do so and then return to this install documentation.
+
 Extract the source files:
  $ tar -zxvf Unreal3.2.10.5.tar.gz
  $ cd Unreal3.2.10.5/
@@ -32,7 +36,7 @@ Compile the sources:
  $ ./Config; make; make install
 
 When asked "What directory are all the server configuration files in" change to:
- /home/ircd/unreal/
+ /home/ircd/unreal
 
 When asked "What is the path to the ircd binary including the name of the binary?" change to:
  /home/ircd/unreal/src/ircd
@@ -90,16 +94,15 @@ Compile the modules:
 After the modules are complied; they need to be added to unreal binary location:
  $ cp src/modules/*.so  ~/unreal/modules/
 
-Your ircd should be able to start without a problem now:
- $ cd ~/ircd/unreal/
- $ ./unreal start 
-
 Add a crontab that checks unrealircd and starts it at boot using provided script:
  $ crontab setup_crontab
 
 (if you get any errors make sure you are in the crontab group)
 
-Finally ajust the templates to your preferences and restart unreal 
+Remove files not needed:
+ $ ./clean_extra_files.sh
+
+Finally ajust the templates to your preferences and restart unreal
 
 ATTENTION ! You may want to change the following files:
 
@@ -121,6 +124,13 @@ WARNING ! Due to security reasons YOU MUST CHANGE this files:
  settings/vhost/vhost.conf         <-- with password of your preference
  settings/network/cloak-keys.conf  <-- create 3 different long random 'passwords'    
  settings/drpass/drpass.conf       <-- create very secret passwords here
+
+Note: If you have more than one server or want to link to another server
+      Your cloak keys must be the same in all servers
+
+Your ircd should be able to start without a problem now:
+ $ cd ~/unreal/
+ $ ./unreal start
 
 For wiki support you can visit https://wirelesspt.net/wiki/ircd and our forums
 

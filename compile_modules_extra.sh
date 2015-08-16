@@ -32,4 +32,3 @@ make custommodule MODULEFILE=noctcp
 make custommodule MODULEFILE=m_sanick
 make custommodule MODULEFILE=m_nocaps
 make custommodule MODULEFILE=m_listreg
-make custommodule MODULEFILE=f_staticcloak
