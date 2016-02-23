@@ -35,7 +35,7 @@ Goto the download page:
  https://www.unrealircd.org/download/3.2/10.5/src
 
 Download the sources:
- $ wget --no-check-certificate https://www.unrealircd.org/downloads/Unreal3.2.10.5.tar.gz
+ $ wget --no-check-certificate https://www.unrealircd.org/downloads/Unreal3.2.10.6.tar.gz
 
 At this point you may want to check the authenticity of this file after it has been downloaded. 
 Doing so will help to make sure your download has not been tampered with. 
