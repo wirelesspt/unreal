@@ -1,3 +1,9 @@
+# Type: 
+
+crontab -e -u ircd
+
+# And insert the lines bellow
+
 # Start ircd at every system boot
 @reboot irc cd /home/ircd/unreal && ./unreal start &
 
