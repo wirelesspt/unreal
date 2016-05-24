@@ -61,7 +61,7 @@ Do you want to support SSL (Secure Sockets Layer) connections?
  [Yes]
 
 Do you want to enable IPv6 support?
- [say yes if your server supports it]
+ [Yes]
 
 Do you want to enable ziplinks support? 
  [Yes]
