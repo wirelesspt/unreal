@@ -32,14 +32,27 @@ Download the templates:
  $ git clone https://github.com/wirelesspt/unreal.git
 
 Goto the download page:
- https://www.unrealircd.org/download/3.2/10.5/src
+ https://www.unrealircd.org/download/3.2/3.2.10.7/src
 
 Download the sources:
- $ wget --no-check-certificate https://www.unrealircd.org/downloads/Unreal3.2.10.6.tar.gz
+ $ wget --no-check-certificate https://www.unrealircd.org/downloads/Unreal3.2.10.7.tar.gz
 
 At this point you may want to check the authenticity of this file after it has been downloaded. 
 Doing so will help to make sure your download has not been tampered with. 
-Follow the instructions on the download page to do so and then return to this install documentation.
+
+ gpg --keyserver keys.gnupg.net --recv-keys 0xA7A21B0A108FF4A9
+
+ wget https://www.unrealircd.org/downloads/Unreal3.2.10.7.tar.gz.asc 
+ gpg --verify Unreal3.2.10.7.tar.gz.asc Unreal3.2.10.7.tar.gz
+
+File Checksums
+
+ SHA1: bd32e5c89e8d147991a64e4c3d3430bded913694
+ SHA256: 472e12cd42d2e725a1795e2bead4786062775782bd015a07697c2edf400d4047
+
+
+In case of doubts or problems, follow the instructions on the download page to do so and then 
+return to this install documentation.
 
 Extract the source files:
  $ tar -zxvf Unreal3.2.10.6.tar.gz
