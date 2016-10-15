@@ -55,8 +55,8 @@ In case of doubts or problems, follow the instructions on the download page to d
 return to this install documentation.
 
 Extract the source files:
- $ tar -zxvf Unreal3.2.10.6.tar.gz
- $ cd Unreal3.2.10.6/
+ $ tar -zxvf Unreal3.2.10.7.tar.gz
+ $ cd Unreal3.2.10.7/
 
 Compile the sources:
  $ ./Config; make; make install
